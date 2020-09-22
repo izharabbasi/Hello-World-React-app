@@ -31,13 +31,14 @@ jobs:
         with:
           # Yarn command
           cmd: install
-      - name: creating yarn
+        
+      - name: creating build
         run: yarn build
       
       - name: install surge
         run: npm install -g surge
       
       - name: deploying on surge
-        run: surge./build http://helloworld_react_app.surge.sh/ --token ${{secrets.TOKEN}}
+        run: surge./build http://hello_world_react_app.surge.sh/ --token ${{secrets.SURGE_TOKEN}}
               
       
