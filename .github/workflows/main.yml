@@ -18,11 +18,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v-2
+      - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
       - name: install nodejs
-      - uses: actions/setup-node@v2-beta
+        uses: actions/setup-node@v2-beta
         with:
           version: 12 
     
@@ -31,11 +31,14 @@ jobs:
         with:
           # Yarn command
           cmd: install
+        
+      - name: creating build
+        run: yarn build
       
       - name: install surge
         run: npm install -g surge
       
       - name: deploying on surge
-        run: surge./build http://helloworld_react_app.surge.sh/ --token ${{secrets.TOKEN}}
+        run: surge ./build http://hello_world_react_app.surge.sh/ --token ${{secrets.SURGE_TOKEN}}
               
       
